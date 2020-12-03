@@ -4,5 +4,5 @@
 
 def matrix_transpose(matrix):
     """ matrix transpose fuction """
-    newMatrix = list(zip(*matrix))
+    newMatrix = list(map(list, zip(*matrix)))
     return newMatrix
