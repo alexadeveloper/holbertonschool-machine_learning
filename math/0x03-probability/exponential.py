@@ -4,6 +4,8 @@
 
 class Exponential:
     """ exponential"""
+    e = 2.7182818285
+
     def __init__(self, data=None, lambtha=1.):
         """ function lambtha"""
         self.lambtha = float(lambtha)
@@ -17,3 +19,10 @@ class Exponential:
             if isList != list:
                 raise TypeError("data must be a list")
             self.lambtha = float(sum(data) / len(data))
+
+    def pdf(self, x):
+        """pdf"""
+        if x < 0:
+            return 0
+        result = self.lambtha * (Exponential.e ** (self.lambtha * (-1) * x))
+        return result
