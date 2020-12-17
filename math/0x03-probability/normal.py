@@ -45,7 +45,11 @@ class Normal:
         """ cdf """
         v2 = (x - self.mean) / ((2 ** 0.5) * self.stddev)
         e1 = 2 / (Normal.pi ** 0.5)
-        e2 = v2 - ((v2 ** 3) / 3) + ((v2 ** 5) / 10)
-        e3 = ((v2 ** 7) / 42) + ((v2 ** 9) / 216)
-        e = e1 * (e2 - e3)
-        return (1 + e) / 2
+        e2 = ((v2 ** 3) / 3)
+        e3 = ((v2 ** 5) / 10)
+        e4 = ((v2 ** 7) / 42)
+        e5 = ((v2 ** 9) / 216)
+        e6 = v2 - e2 + e3 - e4 + e5
+        e7 = e1 * e6
+        rescdf = (1 + e7) / 2
+        return rescdf
