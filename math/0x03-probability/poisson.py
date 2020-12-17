@@ -32,3 +32,16 @@ class Poisson:
             f *= i
         result = ((self.lambtha ** k) * Poisson.e ** (self.lambtha * (-1))) / f
         return result
+
+    def cdf(self, k):
+        """ function cdf """
+        if k < 0:
+            return 0
+        if type(k) != int:
+            k = int(k)
+        f = [1]
+        for j in range(1, k + 1):
+            f.append(f[j - 1] * j)
+        rescdf = (Poisson.e ** (self.lambtha * (-1))) * sum([
+                (self.lambtha ** j) / f[j] for j in range(0, k + 1)])
+        return rescdf
