@@ -4,6 +4,7 @@
 
 class Poisson:
     """class poisson"""
+    e = 2.7182818285
 
     def __init__(self, data=None, lambtha=1.):
         """ Function poisson"""
@@ -19,3 +20,15 @@ class Poisson:
             if isList != list:
                 raise TypeError("data must be a list")
             self.lambtha = float(sum(data) / len(data))
+
+    def pmf(self, k):
+        """ function PMF """
+        if k <= 0:
+            return 0
+        if type(k) != int:
+            k = int(k)
+        f = 1
+        for i in range(1, k + 1):
+            f *= i
+        result = ((self.lambtha ** k) * Poisson.e ** (self.lambtha * (-1))) / f
+        return result
