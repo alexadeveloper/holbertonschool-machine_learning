@@ -25,3 +25,21 @@ class Binomial:
             self.p = 1 - (std / m)
             self.n = int(round(m / self.p))
             self.p = m / self.n
+
+    def pmf(self, k):
+        """ pmf """
+        if type(k) != int:
+            k = int(k)
+        if k > self.n or k < 0:
+            return 0
+        nf = 1
+        for j in range(1, self.n + 1):
+            nf *= j
+        kf = 1
+        for l in range(1, k + 1):
+            kf *= l
+        tf = 1
+        for m in range(1, (self.n - k) + 1):
+            tf *= m
+        t2 = nf / (kf * tf)
+        return t2 * ((self.p ** k) * ((1 - self.p) ** (self.n - k)))
