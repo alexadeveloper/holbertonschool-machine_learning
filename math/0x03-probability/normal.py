@@ -5,6 +5,9 @@
 class Normal:
     """ class normal """
 
+    pi = 3.1415926536
+    e = 2.7182818285
+
     def __init__(self, data=None, mean=0., stddev=1.):
         """" constructor """
         if data is None:
@@ -31,3 +34,9 @@ class Normal:
         """x_value"""
         resx = z * self.stddev + self.mean
         return resx
+
+    def pdf(self, x):
+        """ PDF """
+        t = 1 / (self.stddev * ((2 * Normal.pi)) ** 0.5)
+        t2 = Normal.e ** (-0.5 * ((x - self.mean) / self.stddev) ** 2)
+        return t * t2
