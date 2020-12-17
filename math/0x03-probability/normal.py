@@ -40,3 +40,12 @@ class Normal:
         t = 1 / (self.stddev * ((2 * Normal.pi)) ** 0.5)
         t2 = Normal.e ** (-0.5 * ((x - self.mean) / self.stddev) ** 2)
         return t * t2
+
+    def cdf(self, x):
+        """ cdf """
+        v2 = (x - self.mean) / ((2 ** 0.5) * self.stddev)
+        e1 = 2 / (Normal.pi ** 0.5)
+        e2 = (v2 - ((v2 ** 3) / 3) + ((v2 ** 5) / 10) -
+                ((v2 ** 7) / 42) + ((v2 ** 9) / 216))
+        e = e1 * e2
+        return (1 + e) / 2
