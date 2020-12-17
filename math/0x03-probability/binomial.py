@@ -42,4 +42,14 @@ class Binomial:
         for m in range(1, (self.n - k) + 1):
             tf *= m
         t2 = nf / (kf * tf)
-        return t2 * ((self.p ** k) * ((1 - self.p) ** (self.n - k)))
+        respmf = t2 * ((self.p ** k) * ((1 - self.p) ** (self.n - k)))
+        return respmf
+
+    def cdf(self, k):
+        """cdf"""
+        if type(k) != int:
+            k = int(k)
+        if k < 0:
+            return 0
+        rescdf = sum([self.pmf(j) for j in range(k + 1)])
+        return rescdf
